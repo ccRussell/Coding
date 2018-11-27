@@ -65,13 +65,47 @@ public class LinkedNodeUtil {
     }
 
     /**
-     * 单链表反转
+     * 单链表反转-使用递归
      *
      * @param head
      * @return
      */
     public static LinkedNode reverseLinkedNode(LinkedNode head){
-        return null;
+        if(head == null || head.next == null){
+            return head;
+        }
+        LinkedNode newHead = reverseLinkedNode(head.next);
+        head.next.next = head;
+        head.next = null;
+        return newHead;
+
+    }
+
+    /**
+     * 单链表反转-使用平常方法
+     * 关键是将某个节点的后继节点变为之前的前驱节点
+     *
+     * @param head
+     * @return
+     */
+    public static LinkedNode reverseLinkedNode1(LinkedNode head){
+        if(head == null || head.next == null){
+            return head;
+        }
+        LinkedNode pre = null;
+        LinkedNode cur = head;
+        LinkedNode temp;
+        while(cur != null){
+            temp = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = temp;
+        }
+        return pre;
+    }
+
+    public static void reversePrint(LinkedNode head){
+
     }
 
     /**
